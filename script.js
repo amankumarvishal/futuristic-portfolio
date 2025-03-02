@@ -57,21 +57,25 @@ document.querySelectorAll('nav a').forEach(anchor => {
 });
 
 // Scroll Animations
-const animateOnScroll = (elements, animation) => {
+const animateOnScroll = (elements, animationClass) => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add(animation);
+        entry.target.classList.add(animationClass);
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.2 });
-  elements.forEach(el => observer.observe(el));
+  }, { threshold: 0.1 }); // Lower threshold for earlier trigger
+
+  elements.forEach(el => {
+    el.style.opacity = '0'; // Ensure initial state
+    el.style.transform = 'translateY(50px)';
+    observer.observe(el);
+  });
 };
 
+// Apply Animation
 animateOnScroll(document.querySelectorAll('.card'), 'fade-in-up');
-animateOnScroll(document.querySelectorAll('#about p'), 'fade-in');
-animateOnScroll(document.querySelectorAll('#contact form'), 'slide-up');
 
 // Form Submission
 const form = document.getElementById('contact-form');
@@ -80,40 +84,27 @@ const formMessage = document.getElementById('form-message');
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   formMessage.textContent = 'Sending...';
-  formMessage.classList.add('fade-in');
   formMessage.style.color = 'cyan';
 
   setTimeout(() => {
     formMessage.textContent = 'Message sent successfully!';
     formMessage.style.color = '#00ff00';
-    form.classList.add('shake');
-    playSound();
     form.reset();
-    
     setTimeout(() => {
-      form.classList.remove('shake');
-      formMessage.classList.remove('fade-in');
       formMessage.textContent = '';
     }, 2000);
   }, 1000);
 });
 
-// Sound Effect
-function playSound() {
-  const audio = new Audio('https://www.soundjay.com/buttons/beep-01a.mp3'); // Public domain sound
-  audio.play().catch(err => console.log('Audio blocked:', err));
-}
-
-// Card Hover Effects with Sound
+// Card Hover Effects (Simplified - Removed Sound for Now)
 const cards = document.querySelectorAll('.card');
 cards.forEach(card => {
   card.addEventListener('mouseenter', () => {
     card.style.transform = 'rotate(6deg) scale(1.1) translateY(-10px)';
     card.style.boxShadow = '0 0 25px rgba(0, 255, 255, 0.7)';
-    playSound();
   });
   card.addEventListener('mouseleave', () => {
-    card.style.transform = 'rotate(0deg) scale(1) translateY(0)';
+    card.style.transform = card.classList.contains('fade-in-up') ? 'translateY(0)' : 'translateY(50px)';
     card.style.boxShadow = '0 0 15px rgba(0, 255, 255, 0.5)';
   });
 });
