@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Particle Background (Simulated with CSS) -->
-  <div class="particles"></div>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
 
   <!-- Header -->
   <header>
@@ -24,7 +24,7 @@
   <section id="hero">
     <h1 class="glow animate-title">Aman Kumar</h1>
     <p>Math Tutor & Creative Coder</p>
-    <div class="cube and heart"></div>
+    <div class="cube"></div>
   </section>
 
   <!-- About Section -->
@@ -42,7 +42,7 @@
     <h2 class="glow">Projects</h2>
     <div class="project-grid">
       <div class="card">
-        <h3 class="glow">Project 1</h3>
+        <h3 class="glow">Project</h3>
         <p>Animated scripture reader with search.</p>
       </div>
       <div class="card">
@@ -59,12 +59,17 @@
   <!-- Contact Section -->
   <section id="contact">
     <h2 class="glow">Contact Me</h2>
-    <form>
-      <input type="text" placeholder="Name" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Message" required></textarea>
+    <form id="contact-form">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Message" required></textarea>
       <button type="submit">Send</button>
     </form>
+    <p id="form-message" class="form-message"></p>
   </section>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
