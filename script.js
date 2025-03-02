@@ -1,52 +1,70 @@
-// Debug Log
-console.log('Script loaded');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aman Kumar - Animated Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1 class="glow">Portfolio</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-// Smooth Scrolling
-document.querySelectorAll('nav a').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    const targetSection = document.querySelector(targetId);
-    const offset = 60;
-    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-    console.log('Nav clicked:', targetId);
-  });
-});
+  <!-- Hero Section -->
+  <section id="hero">
+    <h1 class="glow">Aman Kumar</h1>
+    <p>Data Analyst & Creative Coder</p>
+  </section>
 
-// Form Submission
-const form = document.getElementById('contact-form');
-const formMessage = document.getElementById('form-message');
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="glow">About Me</h2>
+    <p>
+      I’m a passionate math tutor and developer, blending logic with creativity. 
+      With 500+ students taught, I craft engaging lessons and innovative tools 
+      like AI tutors and Bible apps.
+    </p>
+  </section>
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  formMessage.textContent = 'Sending...';
-  formMessage.style.color = 'cyan';
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2 class="glow">Projects</h2>
+    <div class="project-grid">
+      <div class="card">
+        <h3 class="glow">Project 1</h3>
+        <p>Animated scripture reader with search.</p>
+      </div>
+      <div class="card">
+        <h3 class="glow">Project 2</h3>
+        <p>Interactive lessons with AI support.</p>
+      </div>
+      <div class="card">
+        <h3 class="glow">Project 3</h3>
+        <p>This animated masterpiece!</p>
+      </div>
+    </div>
+  </section>
 
-  setTimeout(() => {
-    formMessage.textContent = 'Message sent successfully!';
-    formMessage.style.color = '#00ff00';
-    form.reset();
-    setTimeout(() => {
-      formMessage.textContent = '';
-    }, 2000);
-  }, 1000);
-  console.log('Form submitted');
-});
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 class="glow">Contact Me</h2>
+    <form id="contact-form">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <p id="form-message" class="form-message"></p>
+  </section>
 
-// Card Hover Effects
-const cards = document.querySelectorAll('.card');
-cards.forEach(card => {
-  card.addEventListener('mouseenter', () => {
-    card.style.transform = 'rotate(6deg) scale(1.1) translateY(-10px)';
-    card.style.boxShadow = '0 0 25px rgba(0, 255, 255, 0.7)';
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'rotate(0deg) scale(1) translateY(0)';
-    card.style.boxShadow = '0 0 15px rgba(0, 255, 255, 0.5)';
-  });
-});
-
-// Debug Projects Section
-console.log('Projects section:', document.getElementById('projects'));
-console.log('Cards:', document.querySelectorAll('.card').length);
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
