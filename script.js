@@ -4,12 +4,23 @@ document.addEventListener("DOMContentLoaded", function() {
     function checkVisibility() {
         elements.forEach(element => {
             const rect = element.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            if (rect.top < window.innerHeight - 100 && rect.bottom >= 0) {
                 element.style.animationPlayState = "running";
             }
         });
     }
 
+    // Initial check and scroll listener
     window.addEventListener("scroll", checkVisibility);
-    checkVisibility(); // Initial check
+    checkVisibility();
+
+    // Smooth scroll for navigation (optional, if you add navigation later)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
 });
