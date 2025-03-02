@@ -105,11 +105,18 @@ nav a:hover {
   background: #222;
   padding: 20px;
   border-radius: 10px;
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  opacity: 0; /* Start hidden for scroll animation */
+  transform: translateY(50px); /* Start off-screen */
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.card.visible {
+  opacity: 1; /* Show when in view */
+  transform: translateY(0); /* Move into place */
 }
 
 .card:hover {
-  transform: rotate(6deg) scale(1.1);
+  transform: rotate(6deg) scale(1.1); /* Hover effect */
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
 }
 
