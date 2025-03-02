@@ -1,4 +1,16 @@
+/* Canvas for Three.js */
+.cube-canvas {
+  width: 50%;
+  height: 50vh;
+  margin-top: 40px;
+}
 
+/* Ensure cards start off-screen */
+.card {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
 /* Ensure content stays above particles */
 header, section {
   position: relative;
